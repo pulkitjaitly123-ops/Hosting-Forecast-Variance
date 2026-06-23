@@ -1,9 +1,9 @@
 # GoDaddy Hosting — Revenue Forecasting & Variance Automation
 
-A self-contained FP&A toolkit for the GoDaddy **Hosting** segment. It builds a
-bottom-up, driver-based revenue forecast, compares actuals to budget, decomposes
+A self contained FP&A toolkit for the GoDaddy **Hosting** segment. It builds a
+bottom up, driver based revenue forecast, compares actuals to budget, decomposes
 the revenue variance into **volume (customers) vs rate (ARPC)** effects, and
-surfaces everything through an interactive **Streamlit dashboard** and a one-page
+surfaces everything through an interactive **Streamlit dashboard** and a one page
 **PDF executive summary**.
 
 It runs instantly on bundled synthetic data (so it works as a demo) and accepts a
