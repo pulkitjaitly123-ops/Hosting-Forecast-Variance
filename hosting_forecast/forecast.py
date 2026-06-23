@@ -1,7 +1,7 @@
 """
 Bottom-up, driver-based revenue forecast for the Hosting segment.
 
-The roll-forward is deliberately identical to build_model.py's Hosting logic:
+The roll-forward uses the standard driver-based Hosting logic:
 
     churned       = opening_customers * churn_rate
     closing       = opening + new - churned

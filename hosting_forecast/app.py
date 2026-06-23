@@ -1,5 +1,5 @@
 """
-Streamlit dashboard — GoDaddy Hosting revenue forecasting & variance.
+Streamlit dashboard — Hosting revenue forecasting & variance.
 
 Run:
     streamlit run hosting_forecast/app.py
@@ -102,10 +102,10 @@ def _fig_bridge(bridge):
 def main():
     import streamlit as st
 
-    st.set_page_config(page_title="GoDaddy Hosting — Forecast & Variance",
+    st.set_page_config(page_title="Hosting — Forecast & Variance",
                        layout="wide", page_icon="📊")
     st.markdown(
-        f"<h2 style='color:{config.NAVY};margin-bottom:0'>GoDaddy Hosting — "
+        f"<h2 style='color:{config.NAVY};margin-bottom:0'>Hosting — "
         f"Revenue Forecasting &amp; Variance</h2>"
         f"<p style='color:#5b6470;margin-top:2px'>Bottom-up driver model: "
         f"revenue = average customers × ARPC</p>", unsafe_allow_html=True)

@@ -1,9 +1,8 @@
 """
 Central configuration for the Hosting forecasting & variance automation.
 
-Anchors are drawn from the existing GoDaddy_Financial_Model.xlsx (built by
-build_model.py) so this automation stays consistent with the static model:
-roughly 2.8M Hosting customers, ~5% monthly churn, ~$15/month ARPC.
+Anchors reflect a typical mid-size hosting business: roughly 2.8M customers,
+~5% monthly churn, ~$15/month ARPC.
 """
 from __future__ import annotations
 
@@ -47,9 +46,9 @@ class HostingBaseline:
 
 
 # ── Scenarios ──────────────────────────────────────────────────────────
-# Deltas applied on top of the base case, mirroring the bear/base/bull block
-# in build_model.py (ASSUMPTIONS rows 32-40). Values are absolute adjustments
-# to monthly churn and multiplicative factors on adds / ARPC growth.
+# Deltas applied on top of the base case for the bear/base/bull views. Values
+# are absolute adjustments to monthly churn and multiplicative factors on adds /
+# ARPC growth.
 @dataclass
 class Scenario:
     name: str
@@ -69,7 +68,7 @@ SCENARIOS: Dict[str, Scenario] = {
 TOPDOWN_YOY_GROWTH = 0.10     # 10% YoY guidance
 TOPDOWN_TOLERANCE = 0.02      # agree within 2%
 
-# ── Branding (matches build_model.py palette) ──────────────────────────
+# ── Branding ───────────────────────────────────────────────────────────
 NAVY = "#1B3A6B"
 TEAL = "#00A4A6"
 FAV = "#1F6B2E"      # favourable variance (green)

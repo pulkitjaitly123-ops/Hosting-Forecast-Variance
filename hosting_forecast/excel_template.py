@@ -22,7 +22,7 @@ from .data import load_actuals
 
 TEMPLATE_PATH = os.path.join(config.SAMPLE_DIR, "hosting_actuals_template.xlsx")
 
-# Palette (hex without '#', matching build_model.py conventions)
+# Palette (hex without '#')
 NAVY = "1B3A6B"
 TEAL = "00A4A6"
 LGREY = "F3F4F6"

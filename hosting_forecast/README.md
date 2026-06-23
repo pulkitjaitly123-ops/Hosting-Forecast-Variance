@@ -1,14 +1,12 @@
 # Hosting Revenue Forecasting & Variance Automation
 
-A self-contained FP&A toolkit for the GoDaddy **Hosting** segment. It builds a
+A self-contained FP&A toolkit for a **Hosting** business. It builds a
 bottom-up, driver-based revenue forecast, compares actuals to budget, decomposes
 the revenue variance into **volume (customers) vs rate (ARPC)** effects, and
 surfaces everything through a **Streamlit dashboard** and a one-page **PDF
 executive summary**.
 
-The forecasting math matches the Hosting logic in the repo's
-`build_model.py` / `GoDaddy_Financial_Model.xlsx`, so this automation and the
-static Excel model tell the same story:
+The forecasting math uses a standard driver-based Hosting revenue model:
 
 ```
 churned       = opening_customers * churn_rate
