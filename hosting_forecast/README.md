@@ -52,7 +52,10 @@ python -m hosting_forecast.pdf_report  # write output/hosting_variance_summary.p
 
 ## Input data schema
 
-One row per month (`sample_data/hosting_actuals.csv` is the template).
+One row per month. Templates in `sample_data/`:
+`hosting_actuals_template.xlsx` (Excel; data on sheet 1, an Instructions sheet on
+sheet 2; rebuild with `python -m hosting_forecast.excel_template`) or
+`hosting_actuals.csv` (flat file). The loader reads the first worksheet.
 
 | Column | Meaning |
 |---|---|

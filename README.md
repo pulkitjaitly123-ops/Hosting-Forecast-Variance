@@ -76,8 +76,17 @@ python -m hosting_forecast.pdf_report  # write the PDF executive summary
 
 ## Input data schema
 
-One row per month. `hosting_forecast/sample_data/hosting_actuals.csv` is a
-ready-made template.
+One row per month. Two ready-made templates ship in
+`hosting_forecast/sample_data/`:
+
+- **`hosting_actuals_template.xlsx`** — a formatted Excel workbook with the data
+  on sheet 1 ("Hosting Actuals") and a column-by-column guide on sheet 2
+  ("Instructions"). This is the file to copy, fill with your own numbers, and
+  upload. Regenerate it with `python -m hosting_forecast.excel_template`.
+- **`hosting_actuals.csv`** — the same data as CSV, if you prefer a flat file.
+
+The loader reads the **first worksheet**, so keep your data on sheet 1 with the
+header names unchanged.
 
 | Column | Meaning |
 |---|---|
@@ -104,8 +113,9 @@ hosting_forecast/
   forecast.py        DriverForecast roll-forward, scenarios, top-down check
   variance.py        Variance table, volume/rate bridge, MAPE/bias, narrative
   pdf_report.py      Reportlab one-page executive summary
+  excel_template.py  Builds the sample Excel upload template
   app.py             Streamlit dashboard (Plotly charts + PDF export)
-  sample_data/       Bundled sample actuals CSV
+  sample_data/       Bundled sample actuals (CSV + Excel template)
 docs/
   screenshots/       Dashboard screenshots used in this README
   sample_output/     Example generated PDF
