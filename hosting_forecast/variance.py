@@ -124,7 +124,7 @@ def narrative(bridge: dict, acc: dict) -> list[str]:
     bullets = []
     dirn = "above" if bridge["total_variance"] >= 0 else "below"
     bullets.append(
-        f"Hosting revenue came in {m(bridge['actual_revenue'])} over the trailing "
+        f"Revenue came in {m(bridge['actual_revenue'])} over the trailing "
         f"{bridge['n_months']} months, {m(bridge['total_variance'])} "
         f"({bridge['total_variance_pct']:+.1%}) {dirn} plan ({bridge['status'].lower()})."
     )

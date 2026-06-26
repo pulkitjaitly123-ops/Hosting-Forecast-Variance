@@ -1,12 +1,13 @@
-# Hosting Revenue Forecasting & Variance Automation
+# Revenue Forecasting and Variance Analysis
 
-A self-contained FP&A toolkit for a **Hosting** business. It builds a
-bottom-up, driver-based revenue forecast, compares actuals to budget, decomposes
-the revenue variance into **volume (customers) vs rate (ARPC)** effects, and
+A self-contained FP&A toolkit for subscription revenue. It builds a bottom-up,
+driver-based revenue forecast, compares actuals to budget, decomposes the
+revenue variance into **volume (customers) vs rate (ARPC)** effects, and
 surfaces everything through a **Streamlit dashboard** and a one-page **PDF
 executive summary**.
 
-The forecasting math uses a standard driver-based Hosting revenue model:
+The forecasting math is a simple, auditable monthly roll-forward, so the
+dashboard and any static Excel model tell the same story:
 
 ```
 churned       = opening_customers * churn_rate
@@ -17,12 +18,12 @@ revenue       = avg_customers * ARPC
 
 ## What it demonstrates
 
-- **Bottom-up driver forecasting** under bear / base / bull scenarios
+- **Bottom-up driver forecasting** under bear, base and bull scenarios
 - **Top-down vs bottom-up reconciliation** (agree within a 2% band)
-- **Variance analysis** (actual vs plan) with favourable / unfavourable flags
-- **Volume / rate (price-volume) variance bridge** that reconciles exactly
+- **Variance analysis** (actual vs plan) with favourable and unfavourable flags
+- **Volume and rate (price-volume) variance bridge** that reconciles exactly
 - **Forecast accuracy** (MAPE, bias)
-- Productionised delivery: interactive dashboard + exportable PDF
+- Productionised delivery: interactive dashboard plus exportable PDF
 
 ## Quick start
 
@@ -42,18 +43,15 @@ file from the sidebar to reforecast on real data.
 ## Run the pieces standalone (CLI)
 
 ```bash
-python -m hosting_forecast.data        # generate + preview sample actuals CSV
-python -m hosting_forecast.forecast    # 12M forecast + top-down/bottom-up check
-python -m hosting_forecast.variance    # variance table + volume/rate bridge + MAPE
-python -m hosting_forecast.pdf_report  # write output/hosting_variance_summary.pdf
+python -m hosting_forecast.data        # generate and preview sample actuals CSV
+python -m hosting_forecast.forecast    # 12M forecast plus top-down/bottom-up check
+python -m hosting_forecast.variance    # variance table, volume/rate bridge, MAPE
+python -m hosting_forecast.pdf_report  # write output/variance_summary.pdf
 ```
 
 ## Input data schema
 
-One row per month. Templates in `sample_data/`:
-`hosting_actuals_template.xlsx` (Excel; data on sheet 1, an Instructions sheet on
-sheet 2; rebuild with `python -m hosting_forecast.excel_template`) or
-`hosting_actuals.csv` (flat file). The loader reads the first worksheet.
+One row per month (`sample_data/revenue_actuals.csv` is the template).
 
 | Column | Meaning |
 |---|---|
@@ -75,11 +73,11 @@ variance bridge and PDF are skipped.
 
 | File | Role |
 |---|---|
-| `config.py` | Hosting anchors, scenario deltas, paths, palette |
-| `data.py` | Synthetic generator + CSV/Excel loader & validation |
+| `config.py` | Driver anchors, scenario deltas, paths, palette |
+| `data.py` | Synthetic generator plus CSV/Excel loader and validation |
 | `forecast.py` | `DriverForecast` roll-forward, scenarios, top-down check |
 | `variance.py` | Variance table, volume/rate bridge, MAPE/bias, narrative |
 | `pdf_report.py` | Reportlab one-page executive summary |
-| `app.py` | Streamlit dashboard (Plotly charts + PDF export) |
+| `app.py` | Streamlit dashboard (Plotly charts plus PDF export) |
 
 Outputs are written to `hosting_forecast/output/`.

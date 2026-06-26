@@ -1,5 +1,5 @@
 """
-Streamlit dashboard — Hosting revenue forecasting & variance.
+Streamlit dashboard for revenue forecasting and variance analysis.
 
 Run:
     streamlit run hosting_forecast/app.py
@@ -102,11 +102,11 @@ def _fig_bridge(bridge):
 def main():
     import streamlit as st
 
-    st.set_page_config(page_title="Hosting — Forecast & Variance",
+    st.set_page_config(page_title="Revenue Forecasting and Variance Analysis",
                        layout="wide", page_icon="📊")
     st.markdown(
-        f"<h2 style='color:{config.NAVY};margin-bottom:0'>Hosting — "
-        f"Revenue Forecasting &amp; Variance</h2>"
+        f"<h2 style='color:{config.NAVY};margin-bottom:0'>Revenue Forecasting "
+        f"and Variance Analysis</h2>"
         f"<p style='color:#5b6470;margin-top:2px'>Bottom-up driver model: "
         f"revenue = average customers × ARPC</p>", unsafe_allow_html=True)
 
@@ -217,7 +217,7 @@ def main():
             path = pdf_report.build_report(actual, scenario_totals=totals, topdown=td)
             with open(path, "rb") as fh:
                 st.download_button("Download PDF", fh.read(),
-                                   file_name="hosting_variance_summary.pdf",
+                                   file_name="variance_summary.pdf",
                                    mime="application/pdf")
             st.success(f"PDF generated at {path}")
 

@@ -2,8 +2,8 @@
 One-page executive variance summary (PDF) via reportlab.
 
 Layout: title band, KPI strip, volume/rate bridge table, forecast outlook, and
-auto-generated narrative bullets. Palette: navy / teal, green favourable /
-red unfavourable.
+auto-generated narrative bullets. Palette matches build_model.py (navy / teal,
+green favourable / red unfavourable).
 """
 from __future__ import annotations
 
@@ -130,7 +130,7 @@ def build_report(
     story = []
 
     period_lbl = f"{actual['month'].min():%b %Y} to {actual['month'].max():%b %Y}"
-    story.append(_Band("Hosting — Revenue Variance Summary",
+    story.append(_Band("Revenue Forecasting and Variance Analysis",
                        f"Trailing 12 months ending {actual['month'].max():%B %Y}   |   "
                        f"History: {period_lbl}", W))
     story.append(Spacer(1, 10))
@@ -222,7 +222,7 @@ def build_report(
 
     story.append(Spacer(1, 10))
     story.append(Paragraph(
-        f"Generated {date.today():%d %b %Y} by hosting_forecast. Driver model: "
+        f"Generated {date.today():%d %b %Y}. Driver model: "
         f"revenue = average customers × ARPC. Favourable = actual above plan.",
         _PS["foot"]))
 

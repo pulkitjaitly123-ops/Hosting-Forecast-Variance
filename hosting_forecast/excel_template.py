@@ -2,7 +2,7 @@
 Build a sample Excel upload template for the dashboard.
 
 The dashboard's loader (`data.load_actuals`) reads the FIRST worksheet, so the
-data lives on sheet 1 ("Hosting Actuals") and the guidance lives on sheet 2
+data lives on sheet 1 ("Revenue Actuals") and the guidance lives on sheet 2
 ("Instructions"). The file doubles as a worked example and a blank-able template:
 replace the sample rows with your own monthly actuals and upload it as-is.
 
@@ -20,7 +20,7 @@ from openpyxl.utils import get_column_letter
 from . import config
 from .data import load_actuals
 
-TEMPLATE_PATH = os.path.join(config.SAMPLE_DIR, "hosting_actuals_template.xlsx")
+TEMPLATE_PATH = os.path.join(config.SAMPLE_DIR, "revenue_actuals_template.xlsx")
 
 # Palette (hex without '#')
 NAVY = "1B3A6B"
@@ -33,7 +33,7 @@ COLUMNS = [
     ("month",             "yyyy-mm-dd", True,
      "First day of the month, e.g. 2025-01-01"),
     ("opening_customers", "#,##0",      True,
-     "Hosting customers at the start of the month"),
+     "Customers at the start of the month"),
     ("new_customers",     "#,##0",      True,
      "Gross new customers added during the month"),
     ("churned_customers", "#,##0",      True,
@@ -74,7 +74,7 @@ def build_template(path: str = TEMPLATE_PATH) -> str:
 
     # ── Sheet 1: data (what the loader reads) ──────────────────────
     ws = wb.active
-    ws.title = "Hosting Actuals"
+    ws.title = "Revenue Actuals"
     ws.sheet_view.showGridLines = False
     ws.freeze_panes = "A2"
 
@@ -114,7 +114,7 @@ def build_template(path: str = TEMPLATE_PATH) -> str:
     info.row_dimensions[1].height = 24
 
     notes = [
-        "Put one row per month on the 'Hosting Actuals' sheet (sheet 1).",
+        "Put one row per month on the 'Revenue Actuals' sheet (sheet 1).",
         "Keep the header names exactly as shown; the loader reads sheet 1.",
         "Required columns must be filled. Budget columns are optional: leave",
         "   them out (or blank for all rows) to get a forecast with no variance.",

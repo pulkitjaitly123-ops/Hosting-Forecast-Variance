@@ -6,7 +6,7 @@ or extended without guesswork.
 
 ## 1. Goal
 
-Turn a static, spreadsheet-style Hosting revenue model into a living automation
+Turn a static, spreadsheet-style revenue model into a living automation
 that:
 
 1. forecasts revenue bottom-up from operational drivers,
@@ -65,7 +65,7 @@ A single Python package, `hosting_forecast/`, with one responsibility per module
 
 | Module | Responsibility |
 |---|---|
-| `config.py` | Hosting anchors (≈2.8M customers, ≈5% monthly churn, ≈$15 ARPC), scenario deltas, file paths, colour palette |
+| `config.py` | Driver anchors (≈2.8M customers, ≈5% monthly churn, ≈$15 ARPC), scenario deltas, file paths, colour palette |
 | `data.py` | Synthetic actuals generator (seasonality + noise + a clean budget plan) and a CSV/Excel loader with schema validation |
 | `forecast.py` | `DriverForecast` roll-forward, scenario engine, driver overrides, top-down reconciliation |
 | `variance.py` | Actual-vs-budget table, volume/rate bridge, MAPE/bias, plain-English narrative |

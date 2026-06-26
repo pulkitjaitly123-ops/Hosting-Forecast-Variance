@@ -1,12 +1,14 @@
 """
-Hosting — Revenue Forecasting & Variance Analysis automation.
+Revenue Forecasting and Variance Analysis automation.
 
 A self-contained FP&A toolkit that builds a bottom-up, driver-based revenue
-forecast for the Hosting segment, compares it to actuals and budget, decomposes
-the revenue variance into volume (customers) vs rate (ARPC) effects, and surfaces
-everything through a Streamlit dashboard plus a one-page PDF executive summary.
+forecast for a subscription revenue line, compares it to actuals and budget,
+decomposes the revenue variance into volume (customers) vs rate (ARPC) effects,
+and surfaces everything through a Streamlit dashboard plus a one-page PDF
+executive summary.
 
-The forecasting math follows a standard driver-based Hosting revenue model:
+The forecasting math is a simple, auditable monthly roll-forward, so the
+dashboard and any static Excel model tell the same story:
 
     churned      = opening_customers * churn_rate
     closing      = opening_customers + new_customers - churned
@@ -15,7 +17,7 @@ The forecasting math follows a standard driver-based Hosting revenue model:
 
 Modules
 -------
-config       Hosting anchors, scenario deltas, file paths.
+config       Driver anchors, scenario deltas, file paths.
 data         Synthetic actuals generator + CSV/Excel loader & validation.
 forecast     DriverForecast roll-forward engine, scenarios, top-down check.
 variance     Actual vs plan, volume/rate bridge, forecast accuracy (MAPE/bias).

@@ -1,6 +1,6 @@
-# Hosting — Revenue Forecasting & Variance Automation
+# Revenue Forecasting and Variance Analysis
 
-A self contained FP&A toolkit for a **Hosting** business. It builds a
+A self contained FP&A toolkit for subscription revenue. It builds a
 bottom up, driver based revenue forecast, compares actuals to budget, decomposes
 the revenue variance into **volume (customers) vs rate (ARPC)** effects, and
 surfaces everything through an interactive **Streamlit dashboard** and a one page
@@ -16,7 +16,7 @@ real monthly actuals file (so it works as a repeatable monthly tool).
 In FP&A you do not just say "revenue grows 10%." You build revenue from the
 operational **drivers** that cause it to change, you measure actuals against the
 plan, and you explain *why* the variance happened. This project demonstrates that
-end to end for a SaaS-style Hosting business:
+end to end for a subscription revenue line:
 
 ```
 churned       = opening_customers x churn_rate
@@ -43,7 +43,7 @@ revenue       = avg_customers x ARPC
 | ![Variance bridge](docs/screenshots/02_variance_bridge.png) | ![Forecast detail](docs/screenshots/03_forecast_detail.png) |
 
 A sample of the generated PDF executive summary is in
-[`docs/sample_output/`](docs/sample_output/hosting_variance_summary.pdf).
+[`docs/sample_output/`](docs/sample_output/variance_summary.pdf).
 
 ## Quick start
 
@@ -79,11 +79,11 @@ python -m hosting_forecast.pdf_report  # write the PDF executive summary
 One row per month. Two ready-made templates ship in
 `hosting_forecast/sample_data/`:
 
-- **`hosting_actuals_template.xlsx`** — a formatted Excel workbook with the data
-  on sheet 1 ("Hosting Actuals") and a column-by-column guide on sheet 2
+- **`revenue_actuals_template.xlsx`** — a formatted Excel workbook with the data
+  on sheet 1 ("Revenue Actuals") and a column-by-column guide on sheet 2
   ("Instructions"). This is the file to copy, fill with your own numbers, and
   upload. Regenerate it with `python -m hosting_forecast.excel_template`.
-- **`hosting_actuals.csv`** — the same data as CSV, if you prefer a flat file.
+- **`revenue_actuals.csv`** — the same data as CSV, if you prefer a flat file.
 
 The loader reads the **first worksheet**, so keep your data on sheet 1 with the
 header names unchanged.
@@ -108,7 +108,7 @@ bridge and PDF are skipped.
 
 ```
 hosting_forecast/
-  config.py          Hosting anchors, scenario deltas, paths, palette
+  config.py          Driver anchors, scenario deltas, paths, palette
   data.py            Synthetic generator + CSV/Excel loader & validation
   forecast.py        DriverForecast roll-forward, scenarios, top-down check
   variance.py        Variance table, volume/rate bridge, MAPE/bias, narrative

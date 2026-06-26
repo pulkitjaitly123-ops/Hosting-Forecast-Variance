@@ -1,7 +1,7 @@
 """
-Bottom-up, driver-based revenue forecast for the Hosting segment.
+Bottom-up, driver-based revenue forecast for a subscription revenue line.
 
-The roll-forward uses the standard driver-based Hosting logic:
+The roll-forward is a simple, auditable monthly progression:
 
     churned       = opening_customers * churn_rate
     closing       = opening + new - churned
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     fcs = forecast_all(hist, months=12)
     base = fcs["base"]
 
-    print("Bottom-up Hosting forecast — base case (next 12 months)\n")
+    print("Bottom-up revenue forecast, base case (next 12 months)\n")
     show = base[["month", "closing_customers", "arpc", "revenue"]].copy()
     show["month"] = show["month"].dt.strftime("%Y-%m")
     print(show.to_string(index=False,

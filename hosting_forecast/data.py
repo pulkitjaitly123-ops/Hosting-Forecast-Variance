@@ -1,5 +1,5 @@
 """
-Data layer: synthetic Hosting actuals generator + CSV/Excel loader.
+Data layer: synthetic revenue actuals generator + CSV/Excel loader.
 
 The generator produces a realistic monthly history (customer roll-forward with
 seasonality and light noise) plus a budget plan, so the tool runs instantly for
@@ -22,7 +22,7 @@ def generate_sample_actuals(
     write: bool = True,
 ) -> pd.DataFrame:
     """
-    Build `months` of monthly Hosting actuals plus a budget plan.
+    Build `months` of monthly revenue actuals plus a budget plan.
 
     Actuals are the base-case driver roll-forward perturbed by:
       * seasonality  — a Q1 renewal bump in gross adds (Jan-Mar)
@@ -109,7 +109,7 @@ def generate_sample_actuals(
 # ── Loader / validation ────────────────────────────────────────────────
 def load_actuals(path: str | None = None) -> pd.DataFrame:
     """
-    Load a monthly Hosting actuals file (CSV or Excel) and validate its schema.
+    Load a monthly revenue actuals file (CSV or Excel) and validate its schema.
 
     If `path` is None and no sample exists yet, one is generated. Missing budget
     columns are tolerated (variance-vs-budget is then skipped downstream).

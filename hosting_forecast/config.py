@@ -1,8 +1,9 @@
 """
-Central configuration for the Hosting forecasting & variance automation.
+Central configuration for the revenue forecasting and variance automation.
 
-Anchors reflect a typical mid-size hosting business: roughly 2.8M customers,
-~5% monthly churn, ~$15/month ARPC.
+Driver anchors describe a subscription revenue line: roughly 2.8M customers,
+about 5% monthly churn, and about $15/month ARPC. Swap these for your own
+figures, or upload a monthly actuals file to reforecast on real data.
 """
 from __future__ import annotations
 
@@ -13,9 +14,9 @@ from typing import Dict
 # ── Paths ──────────────────────────────────────────────────────────────
 PKG_DIR = os.path.dirname(os.path.abspath(__file__))
 SAMPLE_DIR = os.path.join(PKG_DIR, "sample_data")
-SAMPLE_ACTUALS = os.path.join(SAMPLE_DIR, "hosting_actuals.csv")
+SAMPLE_ACTUALS = os.path.join(SAMPLE_DIR, "revenue_actuals.csv")
 OUTPUT_DIR = os.path.join(PKG_DIR, "output")
-DEFAULT_PDF = os.path.join(OUTPUT_DIR, "hosting_variance_summary.pdf")
+DEFAULT_PDF = os.path.join(OUTPUT_DIR, "variance_summary.pdf")
 
 # ── Canonical schema ───────────────────────────────────────────────────
 # One row per month. The first four driver columns roll forward; revenue is
@@ -32,12 +33,12 @@ REQUIRED_COLUMNS = [
 BUDGET_COLUMNS = ["budget_revenue", "budget_customers", "budget_arpc"]
 
 
-# ── Driver baseline (Hosting segment) ──────────────────────────────────
+# ── Driver baseline (base case) ────────────────────────────────────────
 @dataclass
 class HostingBaseline:
     """Starting point and base-case driver assumptions for a forecast."""
 
-    opening_customers: float = 2_800_000.0   # ~2.8M Hosting customers
+    opening_customers: float = 2_800_000.0   # ~2.8M customers
     new_customers: float = 165_000.0         # gross monthly adds
     churn_rate: float = 0.05                  # 5% monthly logo churn
     arpc: float = 15.00                       # $/customer/month
@@ -46,9 +47,9 @@ class HostingBaseline:
 
 
 # ── Scenarios ──────────────────────────────────────────────────────────
-# Deltas applied on top of the base case for the bear/base/bull views. Values
-# are absolute adjustments to monthly churn and multiplicative factors on adds /
-# ARPC growth.
+# Deltas applied on top of the base case (bear / base / bull). Values are
+# absolute adjustments to monthly churn and multiplicative factors on adds
+# and ARPC growth.
 @dataclass
 class Scenario:
     name: str
@@ -68,7 +69,7 @@ SCENARIOS: Dict[str, Scenario] = {
 TOPDOWN_YOY_GROWTH = 0.10     # 10% YoY guidance
 TOPDOWN_TOLERANCE = 0.02      # agree within 2%
 
-# ── Branding ───────────────────────────────────────────────────────────
+# ── Branding (palette) ─────────────────────────────────────────────────
 NAVY = "#1B3A6B"
 TEAL = "#00A4A6"
 FAV = "#1F6B2E"      # favourable variance (green)
